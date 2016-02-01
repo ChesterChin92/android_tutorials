@@ -30,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //WORK DONE HERE, declared btn and added event listener
         //Declaration and  onClickListener must be setup in onCreate
         Button btn = (Button) findViewById(R.id.button);
-
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -40,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Similar to the concept int varname = (int) someinput
-//        Prevent parsing wrong type
+        //WORK DONE HERE, added event listener, NOTE: this is an image button.
+        //Similar to the concept int varname = (int) someinput
+        //Prevent parsing wrong type
         ImageButton btn2 = (ImageButton) findViewById(R.id.button2);
 
         btn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"hello world from image",Toast.LENGTH_SHORT).show(); }
+                Toast.makeText(getApplicationContext(), "hello world from image", Toast.LENGTH_SHORT).show();
+            }
         });
 
 
@@ -83,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
 //    public void click1(View v) {
 //        Toast.makeText(this,"hello world",Toast.LENGTH_SHORT).show();
 //    }
-
-
 
 
 }
