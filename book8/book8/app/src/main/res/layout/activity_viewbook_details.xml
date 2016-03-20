@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.bcooi.book8.ViewbookDetails">
+
+<TextView
+    android:id="@+id/textViewTitleLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="18dp"
+    android:text="Title" />
+
+<TextView
+    android:id="@+id/textViewYearLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textViewAuthorLabel"
+    android:layout_below="@+id/textViewTitleLabel"
+    android:layout_marginTop="92dp"
+    android:text="Year" />
+
+<TextView
+    android:id="@+id/textViewAuthorLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textViewTitleLabel"
+    android:layout_below="@+id/textViewTitleLabel"
+    android:layout_marginTop="39dp"
+    android:text="Slot" />
+
+<TextView
+    android:id="@+id/textViewAuthor"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/textViewAuthorLabel"
+    android:layout_alignBottom="@+id/textViewAuthorLabel"
+    android:layout_alignLeft="@+id/textViewYear"
+    android:text="TextView" />
+
+<TextView
+    android:id="@+id/textViewYear"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/textViewYearLabel"
+    android:layout_alignBottom="@+id/textViewYearLabel"
+    android:layout_centerHorizontal="true"
+    android:text="TextView" />
+
+<TextView
+    android:id="@+id/textViewTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/textViewTitleLabel"
+    android:layout_alignBottom="@+id/textViewTitleLabel"
+    android:layout_alignLeft="@+id/textViewAuthor"
+    android:text="TextView" />
+
+</RelativeLayout>
