@@ -53,7 +53,7 @@ public class TimeTableSQL {
                 null, null, null, null, "moduleCode");
     }
 
-    public Cursor getOneBook(String id)
+    public Cursor getOneTime(String id)
     {
         return db.query(
                 "timetable", null, "moduleCode=" + id, null, null, null, null);

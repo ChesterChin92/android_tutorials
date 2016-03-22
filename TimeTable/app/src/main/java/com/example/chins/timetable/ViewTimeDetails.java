@@ -16,21 +16,30 @@ import android.widget.TextView;
 
 public class ViewTimeDetails extends AppCompatActivity {
     private String recID;
-    private TextView TextViewTitle;
-    private TextView TextViewSlot;
-    private TextView TextViewYear;
+    private TextView TextViewModule;
+    private TextView TextViewDay;
+    private TextView TextViewTime;
 
+    private TextView TextViewDuration;
+    private TextView TextViewSession;
+    private TextView TextViewRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewtime_details);
-        TextViewTitle = (TextView) findViewById(R.id.textViewTitle);
-        TextViewSlot = (TextView) findViewById(R.id.textViewAuthor);
-        TextViewYear = (TextView) findViewById(R.id.textViewYear);
+        TextViewModule = (TextView) findViewById(R.id.textViewModule);
+        TextViewDay = (TextView) findViewById(R.id.textViewDay);
+        TextViewTime = (TextView) findViewById(R.id.textViewTime);
+        TextViewDuration = (TextView) findViewById(R.id.textViewDuration);
+        TextViewSession = (TextView) findViewById(R.id.textViewSession);
+        TextViewRoom = (TextView) findViewById(R.id.textViewRoom);
+
+
+
         Bundle extras = getIntent().getExtras();
         recID = extras.getString("_id");
-        displayBookDetails();
+        displayTimeDetails();
     }
 
     @Override
@@ -41,15 +50,18 @@ public class ViewTimeDetails extends AppCompatActivity {
     }
 
 
-    private void displayBookDetails()
+    private void displayTimeDetails()
     {
         TimeTableSQL db = new TimeTableSQL(ViewTimeDetails.this);
         db.open();
-        Cursor result = db.getOneBook(recID);
+        Cursor result = db.getOneTime(recID);
         result.moveToFirst();
-        TextViewTitle.setText(result.getString(0));
-        TextViewSlot.setText(result.getString(1));
-        TextViewYear.setText(result.getString(2));
+        TextViewModule.setText(result.getString(0));
+        TextViewDay.setText(result.getString(1));
+        TextViewTime.setText(result.getString(2));
+        TextViewDuration.setText(result.getString(3));
+        TextViewSession.setText(result.getString(4));
+        TextViewRoom.setText(result.getString(5));
         result.close();
         db.close();
     }

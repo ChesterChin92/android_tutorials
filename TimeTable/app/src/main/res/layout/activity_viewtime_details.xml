@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
 
-
+    <!-- Time Table Label-->
     <TextView
-        android:id="@+id/textViewTitleLabel"
+        android:id="@+id/textViewModuleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -16,48 +16,103 @@
         android:text="Module Code" />
 
     <TextView
-        android:id="@+id/textViewYearLabel"
+        android:id="@+id/textViewDayLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewAuthorLabel"
-        android:layout_below="@+id/textViewTitleLabel"
-        android:layout_marginTop="92dp"
+        android:layout_alignLeft="@+id/textViewModuleLabel"
+        android:layout_below="@+id/textViewModuleLabel"
+        android:layout_marginTop="18dp"
         android:text="Day" />
 
     <TextView
-        android:id="@+id/textViewAuthorLabel"
+        android:id="@+id/textViewTimeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewTitleLabel"
-        android:layout_below="@+id/textViewTitleLabel"
-        android:layout_marginTop="39dp"
+        android:layout_alignLeft="@+id/textViewDayLabel"
+        android:layout_below="@+id/textViewDayLabel"
+        android:layout_marginTop="18dp"
         android:text="Start Time" />
 
     <TextView
-        android:id="@+id/textViewAuthor"
+        android:id="@+id/textViewDurationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewAuthorLabel"
-        android:layout_alignBottom="@+id/textViewAuthorLabel"
-        android:layout_alignLeft="@+id/textViewYear"
+        android:layout_alignLeft="@+id/textViewTimeLabel"
+       android:layout_below="@+id/textViewTimeLabel"
+        android:layout_marginTop="18dp"
+        android:text="Duration" />
+
+    <TextView
+        android:id="@+id/textViewSessionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewDurationLabel"
+        android:layout_below="@+id/textViewDurationLabel"
+        android:layout_marginTop="18dp"
+        android:text="Session" />
+
+    <TextView
+        android:id="@+id/textViewRoomLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewSessionLabel"
+        android:layout_below="@+id/textViewSessionLabel"
+        android:layout_marginTop="18dp"
+        android:text="Room" />
+
+
+    <!-- Time Table Details-->
+    <TextView
+        android:id="@+id/textViewModule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewModuleLabel"
+        android:layout_alignBottom="@+id/textViewModuleLabel"
+        android:layout_alignLeft="@+id/textViewDay"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/textViewYear"
+        android:id="@+id/textViewDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewYearLabel"
-        android:layout_alignBottom="@+id/textViewYearLabel"
+        android:layout_alignBaseline="@+id/textViewDayLabel"
+        android:layout_alignBottom="@+id/textViewDayLabel"
         android:layout_centerHorizontal="true"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewTitleLabel"
-        android:layout_alignBottom="@+id/textViewTitleLabel"
-        android:layout_alignLeft="@+id/textViewAuthor"
+        android:layout_alignBaseline="@+id/textViewTimeLabel"
+        android:layout_alignBottom="@+id/textViewTimeLabel"
+        android:layout_alignLeft="@+id/textViewDay"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewDurationLabel"
+        android:layout_alignBottom="@+id/textViewDurationLabel"
+        android:layout_alignLeft="@+id/textViewDay"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/textViewSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewSessionLabel"
+        android:layout_alignBottom="@+id/textViewSessionLabel"
+        android:layout_alignLeft="@+id/textViewDay"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewRoomLabel"
+        android:layout_alignBottom="@+id/textViewRoomLabel"
+        android:layout_alignLeft="@+id/textViewDay"
         android:text="TextView" />
 
 </RelativeLayout>
