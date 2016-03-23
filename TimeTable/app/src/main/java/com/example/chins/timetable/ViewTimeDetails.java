@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ViewTimeDetails extends AppCompatActivity {
@@ -66,6 +67,11 @@ public class ViewTimeDetails extends AppCompatActivity {
         TextViewSession.setText(result.getString(4));
         TextViewRoom.setText(result.getString(5));
         result.close();
+
+        result = db.getID(recID);
+        result.moveToFirst();
+//        rowid,moduleCode,day,startTime
+        Toast.makeText(getApplicationContext(),"ID info : " + result.toString() + " Row ID:" + result.getString(0) + " Module Code:" + result.getString(1) + " Day:" + result.getString(2) + " Start Time" + result.getString(3), Toast.LENGTH_LONG).show();
         db.close();
     }
 
@@ -86,12 +92,12 @@ public class ViewTimeDetails extends AppCompatActivity {
         {
             case R.id.menuAdd:
                 // create an Intent to launch the AddEditContact Activity
-                Intent addbook =
+                Intent addTime =
                         new Intent(this, AddTimeActivity.class);
-                startActivity(addbook);
+                startActivity(addTime);
                 return true;
             case R.id.menuDelete:
-                deleteBook();
+                deleteTime();
                 return true;
         }
 
@@ -100,7 +106,7 @@ public class ViewTimeDetails extends AppCompatActivity {
 
 
 
-    private void deleteBook()
+    private void deleteTime()
     {
         AlertDialog.Builder dgbox = new AlertDialog.Builder(this);
         dgbox.setTitle("Confirm?");

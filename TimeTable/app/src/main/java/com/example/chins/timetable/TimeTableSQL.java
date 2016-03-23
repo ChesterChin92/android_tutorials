@@ -42,29 +42,29 @@ public class TimeTableSQL {
     public void addTimeTable(String moduleCode, String day, String startTime,String duration, String session,String room)
     {
         open();
-        cmd = new String ("INSERT INTO timetable VALUES ("+"'"+moduleCode+"', '"+day+"', '"+startTime+"','"+duration+"','"+session+"','"+room+"');");
+        cmd = new String ("INSERT INTO timetable VALUES ("+"'"+moduleCode+"', '"+day+"', '"+startTime+"','"+duration+"','"+session+"','"+room+"','1');");
         db.execSQL(cmd);
         close();
     }
 
+    //Used in List and Grid View in Content Main
     public Cursor getAllTimeTable()
     {
-        return db.query("timetable", new String[] {"moduleCode", "day", "startTime"},
+        return db.query("timetable", new String[] {"moduleCode", "day", "startTime","rowid"},
                 null, null, null, null, "moduleCode");
     }
 
     public Cursor getOneTime(String id)
     {
         return db.query(
-                "timetable", null, "moduleCode=" + id, null, null, null, null);
+                "timetable", null, "rowid=" + id, null, null, null, null);
     }
 
 
     //Inprogress, NOT COMPLETE
     public Cursor getID(String id)
     {
-        return db.query(
-                "timetable", null, "id=" + id, null, null, null, null);
+        return db.rawQuery("SELECT rowid,moduleCode,day,startTime FROM timetable WHERE rowid="+id+"",null);
     }
 
     public void deleteTimeTable(String id)
@@ -85,7 +85,7 @@ public class TimeTableSQL {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE timetable ( moduleCode TEXT,day TEXT, startTime TEXT, duration TEXT, sessionType TEXT, room TEXT);");
+            db.execSQL("CREATE TABLE timetable ( moduleCode TEXT,day TEXT, startTime TEXT, duration TEXT, sessionType TEXT, room TEXT, slot TEXT);");
         }
 
         @Override

@@ -100,14 +100,16 @@ public class MainActivity extends AppCompatActivity {
         timesql.close();
     }
 
-
+//List View Adapter Updater
     private void updateTimeListViewAdapter(Cursor timelist) {
         timeListViewAdapter.clear();
         String Result ="";
         while (timelist.moveToNext()){
-            String slot = timelist.getString(0);
-            String title = timelist.getString(1);
-            Result = slot+" = " + title;
+            String moduleCode = timelist.getString(0);
+            String day = timelist.getString(1);
+            String startTime = timelist.getString(2);
+            String rowid = timelist.getString(3);
+            Result = rowid+" -ID-  "+" = "+moduleCode+" = " + day + " = " + startTime; //Take note cannot have space here, else gonna mess up the token
             timeListViewAdapter.add(Result);
         }
         if(Result.length()!=0){
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
         timelist.close();
     }
-
+//Grid View Adapter Updater
     private void updateTimeGridViewAdapter(Cursor timelist) {
         //Not a scalable solution, figure out new stuff soon.
         String Result ="";
@@ -144,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id)
         {
+            //Need to modify here to get rowid instead of Module Code
             Intent viewTimeDetails  =
                     new Intent(MainActivity.this, ViewTimeDetails.class);
             String s = timeListView.getItemAtPosition(position).toString();
