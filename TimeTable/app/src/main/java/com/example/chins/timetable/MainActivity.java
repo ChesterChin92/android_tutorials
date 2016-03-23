@@ -45,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
             gridviewarray.add("");
         }
 
+        //List view adapter
         timeListViewAdapter = new ArrayAdapter<String>(
                 MainActivity.this, R.layout.time_list_item,  listviewarray);
         timeListView = (ListView)findViewById(R.id.listView1);
         timeListView.setOnItemClickListener(viewTimeListListener);
         timeListView.setAdapter(timeListViewAdapter); // set adapter
 
+        //Grid view adapter
         timeGridViewAdapter = new ArrayAdapter<String>(
                 MainActivity.this, R.layout.time_list_item,  gridviewarray);
         timeGridView = (GridView)findViewById(R.id.gridView1);
@@ -58,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
         timeGridView.setAdapter(timeGridViewAdapter); // set adapter
 
 
+        //Orientation show hide controller for grid or list
         int display_mode = getResources().getConfiguration().orientation;
         if(display_mode== Configuration.ORIENTATION_PORTRAIT){
             timeGridView.setVisibility(View.GONE);
         } else if(display_mode==Configuration.ORIENTATION_LANDSCAPE){
-            timeGridView.setVisibility(View.GONE);
+            timeListView.setVisibility(View.GONE);
         }
 //        Slot in code here
 
@@ -87,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
         //bookListViewAdapter.changeCursor(booklist); // set the adapter's Cursor
         int display_mode = getResources().getConfiguration().orientation;
         if(display_mode==Configuration.ORIENTATION_PORTRAIT) {
-            updateBookListViewAdapter(timeList);
+            updateTimeListViewAdapter(timeList); //Original updateTimeListViewAdapter
             timeListViewAdapter.notifyDataSetChanged();
 
         } else if(display_mode==Configuration.ORIENTATION_LANDSCAPE){
-            updateTimeListViewAdapter(timeList);
+            updateTimeGridViewAdapter(timeList); //Original timelistviewadapter
             timeGridViewAdapter.notifyDataSetChanged();
         }
         timesql.close();
     }
 
 
-    private void updateBookListViewAdapter(Cursor timelist) {
+    private void updateTimeListViewAdapter(Cursor timelist) {
         timeListViewAdapter.clear();
         String Result ="";
         while (timelist.moveToNext()){
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         timelist.close();
     }
 
-    private void updateTimeListViewAdapter(Cursor timelist) {
+    private void updateTimeGridViewAdapter(Cursor timelist) {
         String Result ="";
         for (int i=0; i<20; i++) {
             gridviewarray.set(i,new String(""));
@@ -140,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id)
         {
-            Intent viewBookDetails  =
+            Intent viewTimeDetails  =
                     new Intent(MainActivity.this, ViewTimeDetails.class);
             String s = timeListView.getItemAtPosition(position).toString();
             StringTokenizer st = new StringTokenizer( s, " " );
             String slotid=st.nextToken();
-            viewBookDetails.putExtra("_id", slotid);
-            startActivity(viewBookDetails);
+            viewTimeDetails.putExtra("_id", slotid);
+            startActivity(viewTimeDetails);
         }
     };
 

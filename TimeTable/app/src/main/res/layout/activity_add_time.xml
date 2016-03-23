@@ -3,11 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spinner_title"/>
 
     <EditText
         android:id="@+id/editTextModule"
@@ -25,29 +20,50 @@
         android:ems="10"
         android:hint="Day" />
 
-    <EditText
-        android:id="@+id/editTextStartTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Start Time" />
 
+
+
+ //Need to look for better alternative, not a scalable solution
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editTextStartTime"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Start Time" />
+
+
+        <Button
+            android:id="@+id/btnChangeTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Time" />
+
+    </TableRow>
 
     <EditText
         android:id="@+id/editTextDuration"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Duration" >
-        <requestFocus />
+        android:hint="Duration"
+        android:editable="false">
     </EditText>
 
-    <EditText
-        android:id="@+id/editTextSession"
+    <TextView
+        android:id="@+id/TextViewSession"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Type of Session" />
+        android:text="Type Of Session" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinner_title"/>
 
     <EditText
         android:id="@+id/editTextRoom"
@@ -62,5 +78,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Add" />
+
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="374dp"
+        android:layout_height="406dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"/>
 
 </LinearLayout>

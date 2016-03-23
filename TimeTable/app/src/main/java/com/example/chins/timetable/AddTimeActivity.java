@@ -1,5 +1,7 @@
 package com.example.chins.timetable;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,10 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -25,23 +30,41 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
     private EditText EditTextDay;
     private EditText EditTextStartTime;
     private EditText EditTextDuration;
-    private EditText EditTextSession;
+    private TextView TextViewSession;
     private EditText EditTextRoom;
     private long rowID;
 
+    //Spinner for Session
+    private Spinner SpinnerSession;
+
+    //Time Picker
+    private TimePicker timePicker1;
+    private Button btnChangeTime;
+
+    private int hour;
+    private int minute;
+
+    static final int TIME_DIALOG_ID = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_time);
-        Log.i("TRACEEE", "AddBookAct onCreate");
+//        Log.i("TRACEEE", "AddBookAct onCreate");
 
         EditTextModule = (EditText) findViewById(R.id.editTextModule);
         EditTextDay = (EditText) findViewById(R.id.editTextDay);
         EditTextStartTime = (EditText) findViewById(R.id.editTextStartTime);
         EditTextDuration = (EditText) findViewById(R.id.editTextDuration);
-        EditTextSession = (EditText) findViewById(R.id.editTextSession);
+        TextViewSession = (TextView) findViewById(R.id.textViewSession);
         EditTextRoom = (EditText) findViewById(R.id.editTextRoom);
+
+        //Spinner
+        SpinnerSession = (Spinner) findViewById(R.id.spinner);
+
+        //Time Picker
+        setCurrentTimeOnView();
+        addListenerOnButton();
 
         // set event listener for the Save Contact Button
         Button ButtonAdd = (Button) findViewById(R.id.buttonAdd);
@@ -90,12 +113,14 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
             if (EditTextModule.getText().length() != 0)
             {
                 TimeTableSQL db = new TimeTableSQL(AddTimeActivity.this);
-                db.addTimeTable(EditTextModule.getText().toString(), EditTextDay.getText().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),EditTextSession.getText().toString(),EditTextRoom.getText().toString());
+                db.addTimeTable(EditTextModule.getText().toString(), EditTextDay.getText().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),SpinnerSession.getSelectedItem().toString(),EditTextRoom.getText().toString());
             }
             finish();
         }
     };
 
+
+    //For Spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
@@ -106,9 +131,82 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
-    };
+    }; //End of spinner
+
+    // display current time
+    public void setCurrentTimeOnView() {
 
 
+        timePicker1 = (TimePicker) findViewById(R.id.timePicker);
+
+        final Calendar c = Calendar.getInstance();
+        hour = c.get(Calendar.HOUR_OF_DAY);
+        minute = c.get(Calendar.MINUTE);
+
+        // set current time into textview
+        EditTextStartTime.setText(
+                new StringBuilder().append(pad(hour))
+                        .append(":").append(pad(minute)));
+
+        // set current time into timepicker
+        timePicker1.setCurrentHour(hour);
+        timePicker1.setCurrentMinute(minute);
+
+    }
+
+    public void addListenerOnButton() {
+
+        btnChangeTime = (Button) findViewById(R.id.btnChangeTime);
+
+        btnChangeTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                showDialog(TIME_DIALOG_ID);
+
+            }
+
+        });
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case TIME_DIALOG_ID:
+                // set time picker as current time
+                return new TimePickerDialog(this,
+                        timePickerListener, hour, minute,false);
+
+        }
+        return null;
+    }
+
+    private TimePickerDialog.OnTimeSetListener timePickerListener =
+            new TimePickerDialog.OnTimeSetListener() {
+                public void onTimeSet(TimePicker view, int selectedHour,
+                                      int selectedMinute) {
+                    hour = selectedHour;
+                    minute = selectedMinute;
+
+                    // set current time into textview
+                    EditTextStartTime.setText(new StringBuilder().append(pad(hour))
+                            .append(":").append(pad(minute)));
+
+                    // set current time into timepicker
+                    timePicker1.setCurrentHour(hour);
+                    timePicker1.setCurrentMinute(minute);
+
+                }
+            };
+
+    private static String pad(int c) {
+        if (c >= 10)
+            return String.valueOf(c);
+        else
+            return "0" + String.valueOf(c);
+    }
 
 
     @Override
