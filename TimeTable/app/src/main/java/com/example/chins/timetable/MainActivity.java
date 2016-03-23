@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         int display_mode = getResources().getConfiguration().orientation;
         if(display_mode== Configuration.ORIENTATION_PORTRAIT){
             timeGridView.setVisibility(View.GONE);
+            Log.d("myTag", "DISPLAY IS POTRAIT");
         } else if(display_mode==Configuration.ORIENTATION_LANDSCAPE){
+            Log.d("myTag", "DISPLAY IS LANDSCAPE");
             timeListView.setVisibility(View.GONE);
         }
 //        Slot in code here
@@ -121,19 +123,25 @@ public class MainActivity extends AppCompatActivity {
     private void updateTimeGridViewAdapter(Cursor timelist) {
         //Not a scalable solution, figure out new stuff soon.
         String Result ="";
+
+        //Idea, do some position processing here and render the array
         for (int i=0; i<20; i++) {
             gridviewarray.set(i,new String(""));
         }
         while (timelist.moveToNext()){
-            String slot = timelist.getString(0);
-            String title = timelist.getString(1);
-            Result = slot+"\n" + title;
-            int pos = Integer.parseInt(slot);
+            String moduleCode = timelist.getString(0);
+            String day = timelist.getString(1);
+            String startTime = timelist.getString(2);
+            String rowid = timelist.getString(3);
+
+            Result = rowid+"\n" + moduleCode + " "+ startTime;
+            Log.d("myTag", "Grid List result : "+ Result.toString());
+            int pos = Integer.parseInt(rowid);
 //	        bookGridViewAdapter.insert(Result, pos );
             gridviewarray.set(pos-1,new String(Result));
         }
         if(Result.length()!=0){
-
+// add a log here soon
         }
         timelist.close();
     }

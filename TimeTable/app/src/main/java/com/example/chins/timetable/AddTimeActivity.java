@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class AddTimeActivity extends AppCompatActivity implements OnItemSelectedListener{
     private EditText EditTextModule;
-    private EditText EditTextDay;
+    private TextView TextViewDay;
     private EditText EditTextStartTime;
     private EditText EditTextDuration;
     private TextView TextViewSession;
@@ -36,6 +36,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 
     //Spinner for Session
     private Spinner SpinnerSession;
+    private Spinner SpinnerDay;
 
     //Time Picker
     private TimePicker timePicker1;
@@ -53,7 +54,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 //        Log.i("TRACEEE", "AddBookAct onCreate");
 
         EditTextModule = (EditText) findViewById(R.id.editTextModule);
-        EditTextDay = (EditText) findViewById(R.id.editTextDay);
+        TextViewDay = (TextView) findViewById(R.id.textViewDay);
         EditTextStartTime = (EditText) findViewById(R.id.editTextStartTime);
         EditTextDuration = (EditText) findViewById(R.id.editTextDuration);
         TextViewSession = (TextView) findViewById(R.id.textViewSession);
@@ -61,6 +62,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 
         //Spinner
         SpinnerSession = (Spinner) findViewById(R.id.spinner);
+        SpinnerDay = (Spinner) findViewById(R.id.spinner_day);
 
         //Time Picker
         setCurrentTimeOnView();
@@ -74,9 +76,13 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
         //Android Spinner
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner_day = (Spinner) findViewById(R.id.spinner_day);
 
+
+        //FOR SPINNER CATEGORY
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
+        spinner_day.setOnItemSelectedListener(this);
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
@@ -93,6 +99,31 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+
+
+
+
+        //FOR SPINNER DAY
+        // Spinner click listener
+        spinner_day.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories_day = new ArrayList<String>();
+        categories_day.add("Monday");
+        categories_day.add("Tuesday");
+        categories_day.add("Wednesday");
+        categories_day.add("Thursday");
+        categories_day.add("Friday");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter_day = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories_day);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner_day.setAdapter(dataAdapter_day);
     }
 
     @Override
@@ -113,7 +144,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
             if (EditTextModule.getText().length() != 0)
             {
                 TimeTableSQL db = new TimeTableSQL(AddTimeActivity.this);
-                db.addTimeTable(EditTextModule.getText().toString(), EditTextDay.getText().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),SpinnerSession.getSelectedItem().toString(),EditTextRoom.getText().toString());
+                db.addTimeTable(EditTextModule.getText().toString(), SpinnerDay.getSelectedItem().toString().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),SpinnerSession.getSelectedItem().toString(),EditTextRoom.getText().toString());
             }
             finish();
         }
