@@ -37,11 +37,11 @@ public class ViewTimeDetails extends AppCompatActivity {
         TextViewRoom = (TextView) findViewById(R.id.textViewRoom);
 
 
-
+        //Get the key value pair of ID from previous intent
         Bundle extras = getIntent().getExtras();
         recID = extras.getString("_id");
 
-        Log.d("myTag", recID.toString());
+        Log.d("myTag", "Received _id"+recID.toString());
         displayTimeDetails();
     }
 

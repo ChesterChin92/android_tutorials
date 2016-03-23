@@ -59,6 +59,14 @@ public class TimeTableSQL {
                 "timetable", null, "moduleCode=" + id, null, null, null, null);
     }
 
+
+    //Inprogress, NOT COMPLETE
+    public Cursor getID(String id)
+    {
+        return db.query(
+                "timetable", null, "id=" + id, null, null, null, null);
+    }
+
     public void deleteTimeTable(String id)
     {
         open();

@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateTimeGridViewAdapter(Cursor timelist) {
+        //Not a scalable solution, figure out new stuff soon.
         String Result ="";
         for (int i=0; i<20; i++) {
             gridviewarray.set(i,new String(""));
@@ -146,8 +147,11 @@ public class MainActivity extends AppCompatActivity {
             Intent viewTimeDetails  =
                     new Intent(MainActivity.this, ViewTimeDetails.class);
             String s = timeListView.getItemAtPosition(position).toString();
-            StringTokenizer st = new StringTokenizer( s, " " );
-            String slotid=st.nextToken();
+            Log.d("myTag", "Value of itemPosition : "+s);
+            StringTokenizer st = new StringTokenizer( s, " " ); //Split value to tokens with empty space as deliminator
+            Log.d("myTag", "Value of st : "+ st.toString());
+            String slotid=st.nextToken(); //Get the first token
+            Log.d("myTag", "Value of nextToken : "+ slotid.toString());
             viewTimeDetails.putExtra("_id", slotid);
             startActivity(viewTimeDetails);
         }
