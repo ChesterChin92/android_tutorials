@@ -6,13 +6,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by chins on 3/22/2016.
  */
-public class AddTimeActivity extends AppCompatActivity{
+public class AddTimeActivity extends AppCompatActivity implements OnItemSelectedListener{
     private EditText EditTextModule;
     private EditText EditTextDay;
     private EditText EditTextStartTime;
@@ -38,6 +46,30 @@ public class AddTimeActivity extends AppCompatActivity{
         // set event listener for the Save Contact Button
         Button ButtonAdd = (Button) findViewById(R.id.buttonAdd);
         ButtonAdd.setOnClickListener(ButtonAddClicked);
+
+
+        //Android Spinner
+        // Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Lecture");
+        categories.add("Tutorial");
+        categories.add("Self Study");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
     }
 
     @Override
@@ -62,6 +94,18 @@ public class AddTimeActivity extends AppCompatActivity{
             }
             finish();
         }
+    };
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     };
 
 

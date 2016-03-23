@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TimeTable</string>
     <string name="action_settings">Settings</string>
-
+    <string name="spinner_title">Test</string>
 </resources>
