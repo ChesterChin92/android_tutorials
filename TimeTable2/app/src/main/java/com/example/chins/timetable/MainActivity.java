@@ -2,6 +2,7 @@ package com.example.chins.timetable;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.util.StringTokenizer;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final int id_button = 0;
@@ -73,6 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(view.getContext(),
                             "Button clicked index = " + id_, Toast.LENGTH_SHORT)
                             .show();
+
                 }
             });
 //        }
@@ -108,7 +112,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
 
-            Log.d("Button 0","Button 0 pressed");
+            Log.d("Button 0", "Button 0 pressed");
+
+        Intent tableMain  =
+                new Intent(MainActivity.this, tableMain.class);
+        startActivity(tableMain);
 
 
     }
