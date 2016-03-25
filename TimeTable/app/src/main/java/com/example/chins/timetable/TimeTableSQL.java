@@ -51,7 +51,7 @@ public class TimeTableSQL {
     public Cursor getAllTimeTable()
     {
         return db.query("timetable", new String[] {"moduleCode", "day", "startTime","rowid"},
-                null, null, null, null, "moduleCode");
+                null, null, null, null, "rowid");
     }
 
     public Cursor getOneTime(String id)
@@ -70,7 +70,7 @@ public class TimeTableSQL {
     public void deleteTimeTable(String id)
     {
         open();
-        cmd = new String ("DELETE FROM timetable WHERE (moduleCode=" + id + ");");
+        cmd = new String ("DELETE FROM timetable WHERE (rowid=" + id + ");");
         db.execSQL(cmd);
         close();
     }

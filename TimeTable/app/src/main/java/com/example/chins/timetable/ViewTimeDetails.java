@@ -40,7 +40,7 @@ public class ViewTimeDetails extends AppCompatActivity {
 
         //Get the key value pair of ID from previous intent
         Bundle extras = getIntent().getExtras();
-        recID = extras.getString("_id");
+        recID = extras.getString("_id"); //PHP GET
 
         Log.d("myTag", "Received _id"+recID.toString());
         displayTimeDetails();

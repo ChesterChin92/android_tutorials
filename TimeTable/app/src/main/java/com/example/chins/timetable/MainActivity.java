@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Developer Contact : chinschian@hotmail.com", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             String day = timelist.getString(1);
             String startTime = timelist.getString(2);
             String rowid = timelist.getString(3);
-            Result = rowid+" -ID-  "+" = "+moduleCode+" = " + day + " = " + startTime; //Take note cannot have space here, else gonna mess up the token
+            Result = rowid+" ."+" "+moduleCode+" " + day + " " + startTime; //Take note cannot have space here, else gonna mess up the token
             timeListViewAdapter.add(Result);
         }
         if(Result.length()!=0){
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Idea, do some position processing here and render the array
         for (int i=0; i<20; i++) {
-            gridviewarray.set(i,new String(""));
+            gridviewarray.set(i,new String("data"));
         }
         while (timelist.moveToNext()){
             String moduleCode = timelist.getString(0);
@@ -162,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
             StringTokenizer st = new StringTokenizer( s, " " ); //Split value to tokens with empty space as deliminator
             Log.d("myTag", "Value of st : "+ st.toString());
             String slotid=st.nextToken(); //Get the first token
-            Log.d("myTag", "Value of nextToken : "+ slotid.toString());
-            viewTimeDetails.putExtra("_id", slotid);
+            Log.d("myTag", "Value of nextToken : " + slotid.toString());
+            viewTimeDetails.putExtra("_id", slotid); //PHP GET
             startActivity(viewTimeDetails);
         }
     };
@@ -177,8 +177,11 @@ public class MainActivity extends AppCompatActivity {
             Intent viewTimeDetails  =
                     new Intent(MainActivity.this, ViewTimeDetails.class);
             String s = timeGridView.getItemAtPosition(position).toString();
+            Log.d("myTag", "Value of itemPosition : "+s);
             StringTokenizer st = new StringTokenizer( s, " \n" );
+            Log.d("myTag", "Value of st : "+ st.toString());
             String slot_id = st.nextToken();
+            Log.d("myTag", "Value of nextToken : " + slot_id.toString());
             viewTimeDetails.putExtra("_id", slot_id);
 
             startActivity(viewTimeDetails);
