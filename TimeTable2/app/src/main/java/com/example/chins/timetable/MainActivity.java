@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         LinearLayout ll = (LinearLayout)findViewById(R.id.internal_layout);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(250, 400);
-        LinearLayout.LayoutParams lp3 = new LinearLayout.LayoutParams(400, 600);
+        LinearLayout.LayoutParams lp3 = new LinearLayout.LayoutParams(800, 800);
 
         ll.addView(myButton, lp);
         ll.addView(myButton2, lp2);

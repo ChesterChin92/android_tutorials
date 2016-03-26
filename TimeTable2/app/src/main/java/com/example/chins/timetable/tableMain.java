@@ -33,7 +33,6 @@ public class tableMain extends Activity implements View.OnClickListener{
 /* Add Button to row. */
         tr.addView(b);
 
-
         Button myButton2 = new Button(this);
         myButton2.setText("Push Me2");
 //        myButton2.setBackgroundColor(205);
