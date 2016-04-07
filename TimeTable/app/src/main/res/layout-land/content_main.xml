@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.chins.timetable.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Hello World!" />-->
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" >
+
+    </ListView>
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:numColumns="4"
+        android:visibility="invisible">
+
+    </GridView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.chins.timetable.tableMain">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tableLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TableRow
+                    android:id="@+id/tableRow0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:id="@+id/textViewDayLegend"
+                        android:text="Day//Time"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textView9AM"
+                        android:text="9AM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textView10AM"
+                        android:text="10AM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textVie11AM"
+                        android:text="11AM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+                    <TextView
+                        android:id="@+id/textVie12NOON"
+                        android:text="12NOON"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textVie1PM"
+                        android:text="1PM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textVie2PM"
+                        android:text="2PM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+
+                    <TextView
+                        android:id="@+id/textVie3PM"
+                        android:text="3PM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textVie4PM"
+                        android:text="4PM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                    <TextView
+                        android:id="@+id/textVie5PM"
+                        android:text="5PM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+
+                </TableRow>
+
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+                <!-- 2 columns -->
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+                    <TextView
+                        android:id="@+id/textViewMonday"
+                        android:text="Monday"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                </TableRow>
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+                <!-- edittext span 2 column -->
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+                    <TextView
+                        android:id="@+id/textViewTuesday"
+                        android:text="Tuesday"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+                </TableRow>
+
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+
+                <!-- 3 columns -->
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+                    <TextView
+                        android:id="@+id/textViewWednesday"
+                        android:text="Wednesday"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                </TableRow>
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+
+                <!-- display this button in 3rd column via layout_column(zero based) -->
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+                    <TextView
+                        android:id="@+id/textViewThursday"
+                        android:text="Thursday"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                </TableRow>
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+                <!-- display this button in 2nd column via layout_column(zero based) -->
+                <TableRow
+                    android:id="@+id/tableRow5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:id="@+id/textViewFriday"
+                        android:text="Friday"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginRight="5dp"/>
+
+
+                </TableRow>
+
+                <!-- just draw a red line -->
+                <View
+                    android:layout_height="2px"
+                    android:background="#FF0000" />
+            </TableLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</RelativeLayout>

@@ -61,7 +61,7 @@ public class ViewTimeDetails extends AppCompatActivity {
         Cursor result = db.getOneTime(recID);
         result.moveToFirst();
         TextViewModule.setText(result.getString(0));
-        TextViewDay.setText(result.getString(1));
+        TextViewDay.setText(convertDays(result.getString(1)));
         TextViewTime.setText(result.getString(2));
         TextViewDuration.setText(result.getString(3));
         TextViewSession.setText(result.getString(4));
@@ -124,5 +124,35 @@ public class ViewTimeDetails extends AppCompatActivity {
         // provide a button that simply dismisses the dialog
         dgbox.setNegativeButton("Cancel", null);
         dgbox.show();
+    }
+
+
+
+    public String convertDays(String day){
+        String returnday = "Day";
+
+        switch (day){
+            case "1":
+                returnday = "Monday";
+                break;
+            case "2":
+                returnday = "Tuesday";
+                break;
+            case "3":
+                returnday = "Wednesday";
+                break;
+            case "4":
+                returnday = "Thursday";
+                break;
+            case "5":
+                returnday = "Friday";
+                break;
+            default:
+                returnday = day;
+                break;
+        }
+
+        return returnday;
+
     }
 }

@@ -32,7 +32,9 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
     private EditText EditTextDuration;
     private TextView TextViewSession;
     private EditText EditTextRoom;
+    public TextView TextViewHidden;
     private long rowID;
+
 
     //Spinner for Session
     private Spinner SpinnerSession;
@@ -46,6 +48,12 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
     private int minute;
 
     static final int TIME_DIALOG_ID = 999;
+    int[] val_day_int = {1, 2, 3, 4, 5, 6};
+    String[] val_day = {"Monday","Tuesday","Wednesday","Thursday","Friday"};
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +68,11 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
         TextViewSession = (TextView) findViewById(R.id.textViewSession);
         EditTextRoom = (EditText) findViewById(R.id.editTextRoom);
 
+
+        TextViewHidden = (TextView) findViewById(R.id.hidden_day);
+
         //Spinner
-        SpinnerSession = (Spinner) findViewById(R.id.spinner);
+        SpinnerSession = (Spinner) findViewById(R.id.spinner_session);
         SpinnerDay = (Spinner) findViewById(R.id.spinner_day);
 
         //Time Picker
@@ -75,13 +86,13 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 
         //Android Spinner
         // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner_session = (Spinner) findViewById(R.id.spinner_session);
         Spinner spinner_day = (Spinner) findViewById(R.id.spinner_day);
 
 
         //FOR SPINNER CATEGORY
         // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
+        spinner_session.setOnItemSelectedListener(this);
         spinner_day.setOnItemSelectedListener(this);
 
         // Spinner Drop down elements
@@ -98,7 +109,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        spinner_session.setAdapter(dataAdapter);
 
 
 
@@ -109,6 +120,9 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
 
         // Spinner Drop down elements
         List<String> categories_day = new ArrayList<String>();
+
+
+
         categories_day.add("Monday");
         categories_day.add("Tuesday");
         categories_day.add("Wednesday");
@@ -144,7 +158,7 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
             if (EditTextModule.getText().length() != 0)
             {
                 TimeTableSQL db = new TimeTableSQL(AddTimeActivity.this);
-                db.addTimeTable(EditTextModule.getText().toString(), SpinnerDay.getSelectedItem().toString().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),SpinnerSession.getSelectedItem().toString(),EditTextRoom.getText().toString());
+                db.addTimeTable(EditTextModule.getText().toString(), TextViewHidden.getText().toString(), EditTextStartTime.getText().toString(),EditTextDuration.getText().toString(),SpinnerSession.getSelectedItem().toString(),EditTextRoom.getText().toString());
             }
             finish();
         }
@@ -155,11 +169,33 @@ public class AddTimeActivity extends AppCompatActivity implements OnItemSelected
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
 
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.spinner_day)
+        {
+
+            String item = parent.getItemAtPosition(position).toString();
+            String s1 = String.valueOf(val_day_int[position]);
+            String s2 = String.valueOf(val_day[position]);
+            // Showing selected spinner item
+            Toast.makeText(parent.getContext(), "Selected: " + item + "Value: " + s1 + "Which is : " + s2, Toast.LENGTH_SHORT).show();
+
+            TextViewHidden.setText(s1);
+        }
+        else if (spinner.getId() == R.id.spinner_session){
+
+            String item = parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(), "Selected: " + item , Toast.LENGTH_SHORT).show();
+        }
     }
+
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view,
+//                               int position, long id) {
+//
+//        textView1.setText(s1);
+//    }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }; //End of spinner

@@ -51,7 +51,7 @@ public class TimeTableSQL {
     public Cursor getAllTimeTable()
     {
         return db.query("timetable", new String[] {"moduleCode", "day", "startTime","rowid"},
-                null, null, null, null, "rowid");
+                null, null, null, null, "day"); //Sort by day
     }
 
     public Cursor getOneTime(String id)
